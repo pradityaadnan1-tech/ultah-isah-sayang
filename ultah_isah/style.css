@@ -1,0 +1,1472 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap'
+);
+
+
+/* ==============================
+   RESET
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    overflow: hidden;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8e5df,
+            #f2d4d6,
+            #e8cbd3
+        );
+
+    color: #5b454b;
+}
+
+
+/* ==============================
+   BACKGROUND
+================================ */
+
+.background {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255,255,255,.5),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(205,155,180,.3),
+            transparent 35%
+        );
+}
+
+
+/* ==============================
+   BOOK
+================================ */
+
+.book {
+
+    position: absolute;
+
+    width: min(1000px, 90vw);
+    height: min(620px, 76vh);
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    perspective: 2200px;
+
+    transform-style: preserve-3d;
+}
+
+
+/* ==============================
+   SHADOW
+================================ */
+
+.book::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 85%;
+    height: 30px;
+
+    left: 7.5%;
+    bottom: -30px;
+
+    background:
+        rgba(80,40,50,.25);
+
+    filter: blur(18px);
+
+    border-radius: 50%;
+
+    z-index: -10;
+}
+
+
+/* ==============================
+   BOOK PAGES
+================================ */
+
+.book-pages {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #fff8ee;
+
+    box-shadow:
+        0 20px 50px
+        rgba(80,40,50,.25);
+}
+
+
+/* ==============================
+   PAGE
+================================ */
+
+.page {
+
+    position: relative;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fffaf2,
+            #fdf5e9
+        );
+}
+
+
+.left-page {
+
+    border-radius:
+        10px 0 0 10px;
+
+    box-shadow:
+        inset -20px 0 30px
+        rgba(90,50,50,.07);
+}
+
+
+.right-page {
+
+    border-radius:
+        0 10px 10px 0;
+
+    box-shadow:
+        inset 20px 0 30px
+        rgba(90,50,50,.07);
+}
+
+
+/* ==============================
+   TENGAH BUKU
+================================ */
+
+.book-pages::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 100%;
+
+    left: 50%;
+    top: 0;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(100,50,50,.12),
+            rgba(255,255,255,.7),
+            rgba(100,50,50,.12)
+        );
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* ==============================
+   COVER
+================================ */
+
+.cover {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 100;
+
+    cursor: pointer;
+
+    transform-origin: left center;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 1.7s
+        cubic-bezier(.65, 0, .35, 1);
+}
+
+
+/* COVER DEPAN */
+
+.cover::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a45a70,
+            #683847
+        );
+
+    box-shadow:
+        0 20px 50px
+        rgba(70,30,40,.35);
+
+    backface-visibility: hidden;
+}
+
+
+/* BAGIAN DALAM COVER */
+
+.cover::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #eadccd,
+            #faf2e7
+        );
+
+    transform:
+        rotateY(180deg);
+
+    backface-visibility: hidden;
+}
+
+
+/* ==============================
+   COVER TERBUKA
+================================ */
+
+.book.open .cover {
+
+    transform:
+        translateX(-50%)
+        rotateY(-180deg);
+}
+
+
+/* ==============================
+   COVER CONTENT
+================================ */
+
+.cover-content {
+
+    position: absolute;
+
+    inset: 30px;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+}
+
+
+.cover-content span {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    opacity: .75;
+}
+
+
+.cover-content h1 {
+
+    margin-top: 25px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(55px, 8vw, 85px);
+
+    line-height: .85;
+
+    font-weight: 600;
+}
+
+
+.cover-heart {
+
+    margin: 35px 0;
+
+    font-size: 40px;
+
+    animation:
+        heartbeat 1.5s infinite;
+}
+
+
+.cover-content p {
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    opacity: .7;
+}
+
+
+/* ==============================
+   PAGE CONTENT
+================================ */
+
+.page-content {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 55px;
+}
+
+
+.page-content small {
+
+    position: absolute;
+
+    top: 30px;
+    right: 35px;
+
+    color: #b7959d;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+.label {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #ad7884;
+}
+
+
+.page-content h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(48px, 6vw, 75px);
+
+    line-height: .82;
+
+    color: #704452;
+}
+
+
+/* ==============================
+   FIRST PAGE
+================================ */
+
+.left-page .page-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.cake {
+
+    margin: 25px 0 5px;
+
+    font-size: 50px;
+
+    animation:
+        floating 3s infinite ease-in-out;
+}
+
+
+.name {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 24px;
+}
+
+
+.name strong {
+
+    color: #9b5365;
+}
+
+
+.left-page .page-content > p:last-child {
+
+    max-width: 370px;
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: #887276;
+}
+
+
+/* ==============================
+   PAGE 2
+================================ */
+
+.text {
+
+    max-width: 410px;
+
+    margin-top: 28px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 18px;
+
+    line-height: 1.45;
+}
+
+
+.text p {
+
+    margin-bottom: 14px;
+}
+
+
+.signature {
+
+    margin-top: 25px;
+
+    color: #a36d78;
+}
+
+
+.signature strong {
+
+    font-size: 21px;
+}
+
+
+/* ==============================
+   EXTRA PAGE
+================================ */
+
+.extra-page {
+
+    position: absolute;
+
+    top: 0;
+
+    width: 50%;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity .5s;
+}
+
+
+.page-three {
+
+    left: 0;
+}
+
+
+.page-four {
+
+    right: 0;
+}
+
+
+.book.show-second .page-three,
+.book.show-second .page-four {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* ==============================
+   PRAYER
+================================ */
+
+.prayer {
+
+    max-width: 400px;
+
+    margin-top: 25px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+.prayer-icon {
+
+    margin-bottom: 12px;
+
+    font-size: 30px;
+}
+
+
+.prayer p {
+
+    margin-bottom: 12px;
+}
+
+
+.prayer strong {
+
+    display: block;
+
+    margin-top: 15px;
+
+    color: #a35f6c;
+
+    font-size: 25px;
+}
+
+
+/* ==============================
+   GALLERY
+================================ */
+
+.gallery {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 380px;
+
+    margin-top: 15px;
+}
+
+
+.photo {
+
+    position: absolute;
+
+    width: 155px;
+    height: 125px;
+
+    padding: 7px;
+
+    background: white;
+
+    box-shadow:
+        0 12px 25px
+        rgba(70,40,45,.2);
+
+    transition:
+        transform .3s;
+
+    overflow: hidden;
+}
+
+
+.photo img {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.photo:hover {
+
+    z-index: 20;
+
+    transform:
+        scale(1.08)
+        rotate(0deg);
+}
+
+
+.photo1 {
+
+    left: 0;
+    top: 5px;
+
+    transform:
+        rotate(-7deg);
+}
+
+
+.photo2 {
+
+    right: 5px;
+    top: 0;
+
+    transform:
+        rotate(6deg);
+}
+
+
+.photo3 {
+
+    left: 55px;
+    bottom: 20px;
+
+    transform:
+        rotate(5deg);
+}
+
+
+.photo4 {
+
+    right: 45px;
+    bottom: 0;
+
+    transform:
+        rotate(-5deg);
+}
+
+
+/* ==============================
+   NAVIGATION
+================================ */
+
+.navigation {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -70px;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    z-index: 200;
+}
+
+
+.navigation button {
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid
+        rgba(120,70,80,.3);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.8);
+
+    color: #784957;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+.navigation button:hover {
+
+    background: #8c4559;
+
+    color: white;
+}
+
+
+.navigation button:disabled {
+
+    opacity: .25;
+
+    cursor: default;
+}
+
+
+.dots {
+
+    display: flex;
+
+    gap: 6px;
+}
+
+
+.dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 10px;
+
+    background: #d4b7bd;
+}
+
+
+.dot.active {
+
+    width: 22px;
+
+    background: #8c4559;
+}
+
+
+/* ==============================
+   CONFETTI
+================================ */
+
+#confetti {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+
+.confetti {
+
+    position: absolute;
+
+    top: -20px;
+
+    width: 8px;
+    height: 12px;
+
+    animation:
+        fall linear forwards;
+}
+
+
+@keyframes fall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* ==============================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .book {
+
+        width: 94vw;
+        height: 65vh;
+    }
+
+
+    .page-content {
+
+        padding: 30px 20px;
+    }
+
+
+    .page-content h2 {
+
+        font-size: 38px;
+    }
+
+
+    .cover-content h1 {
+
+        font-size: 45px;
+    }
+
+
+    .text {
+
+        font-size: 14px;
+    }
+
+
+    .prayer {
+
+        font-size: 14px;
+    }
+
+
+    .photo {
+
+        width: 105px;
+        height: 82px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .book {
+
+        width: 96vw;
+        height: 62vh;
+    }
+
+
+    .page-content {
+
+        padding: 24px 15px;
+    }
+
+
+    .page-content h2 {
+
+        font-size: 30px;
+    }
+
+
+    .cover-content h1 {
+
+        font-size: 38px;
+    }
+
+
+    .text,
+    .prayer {
+
+        font-size: 12px;
+    }
+
+
+    .photo {
+
+        width: 82px;
+        height: 65px;
+    }
+}
+/* ========================================
+   REALISTIC PAGE FLIP
+======================================== */
+
+/* Halaman kanan yang akan dilipat */
+.right-page {
+    z-index: 20;
+
+    transform-origin: left center;
+
+    transform-style: preserve-3d;
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+    transition:
+        transform 1.35s
+        cubic-bezier(.65, .05, .35, 1);
+}
+
+
+/*
+    Saat halaman dibalik:
+    halaman kanan berputar ke kiri
+*/
+.book.page-flipped .right-page {
+
+    transform:
+        rotateY(-180deg);
+
+    box-shadow:
+        -15px 10px 35px
+        rgba(60, 30, 40, .25);
+}
+
+
+/* ========================================
+   HALAMAN DI BAWAHNYA
+======================================== */
+
+/*
+    Halaman doa berada di bawah
+    halaman yang sedang dilipat.
+*/
+
+.page-three {
+
+    z-index: 10;
+
+    opacity: 0;
+
+    transform:
+        translateZ(-2px);
+
+    transition:
+        opacity .2s ease;
+}
+
+
+/*
+    Setelah halaman mulai dibalik,
+    halaman doa sudah ada di bawahnya.
+*/
+
+.book.page-flipped .page-three {
+
+    opacity: 1;
+}
+
+
+/* ========================================
+   HALAMAN FOTO
+======================================== */
+
+.page-four {
+
+    z-index: 9;
+
+    opacity: 0;
+
+    transition:
+        opacity .5s ease .65s;
+}
+
+
+.book.page-flipped .page-four {
+
+    opacity: 1;
+}
+
+
+/* ========================================
+   SHADOW SAAT MEMBALIK
+======================================== */
+
+.right-page::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(50,25,30,.25),
+            transparent 35%,
+            rgba(255,255,255,.12)
+        );
+
+    transition:
+        opacity .3s ease;
+}
+
+
+.book.page-flipping .right-page::after {
+
+    opacity: 1;
+}
+
+
+/* ========================================
+   GARIS LIPATAN
+======================================== */
+
+.book.page-flipping .book-pages::after {
+
+    box-shadow:
+        0 0 20px
+        rgba(60,30,40,.25);
+
+    transition:
+        box-shadow .3s ease;
+}
+
+
+/* ========================================
+   AGAR TIDAK BISA KLIK
+   SELAMA ANIMASI
+======================================== */
+
+.book.page-flipping .right-page {
+
+    pointer-events: none;
+}
+
+
+.book.page-flipped .right-page {
+
+    pointer-events: none;
+}
+/* =====================================================
+   REALISTIC LEFT PAGE FLIP
+   ===================================================== */
+
+.left-page {
+    position: relative;
+
+    transform-origin: right center;
+
+    transform-style: preserve-3d;
+
+    /*
+       Penting supaya halaman kiri
+       benar-benar berada di atas halaman dasar
+    */
+    z-index: 15;
+
+    /*
+       Posisi awal sedikit menutup
+    */
+    transform:
+        perspective(2200px)
+        rotateY(0deg);
+
+    transition:
+        transform 1.35s
+        cubic-bezier(.65, .05, .35, 1),
+
+        box-shadow 1.35s ease;
+}
+
+
+/* =====================================================
+   KETIKA COVER DIBUKA
+   ===================================================== */
+
+.book.open .left-page {
+
+    animation:
+        openLeftPage
+        1.7s
+        cubic-bezier(.65, 0, .35, 1)
+        forwards;
+}
+
+
+/* =====================================================
+   KETIKA HALAMAN KANAN DIBALIK
+   ===================================================== */
+
+.book.page-flipping .left-page {
+
+    animation:
+        bendLeftPage
+        1.35s
+        cubic-bezier(.65, .05, .35, 1)
+        forwards;
+}
+
+
+/* =====================================================
+   SETELAH HALAMAN KANAN SELESAI
+   ===================================================== */
+
+.book.page-flipped .left-page {
+
+    transform:
+        perspective(2200px)
+        rotateY(0deg)
+        translateZ(0);
+}
+
+
+/* =====================================================
+   OPENING LEFT PAGE
+   ===================================================== */
+
+@keyframes openLeftPage {
+
+    0% {
+
+        transform:
+            perspective(2200px)
+            rotateY(14deg)
+            translateZ(0);
+
+        box-shadow:
+            inset -25px 0 35px
+            rgba(70,35,45,.18);
+    }
+
+    20% {
+
+        transform:
+            perspective(2200px)
+            rotateY(9deg)
+            translateX(-3px)
+            translateZ(2px);
+
+        box-shadow:
+            inset -30px 0 40px
+            rgba(70,35,45,.22),
+
+            -5px 0 15px
+            rgba(70,35,45,.08);
+    }
+
+    45% {
+
+        transform:
+            perspective(2200px)
+            rotateY(-5deg)
+            translateX(-5px)
+            translateZ(4px);
+
+        box-shadow:
+            inset -35px 0 45px
+            rgba(70,35,45,.25),
+
+            -10px 0 20px
+            rgba(70,35,45,.10);
+    }
+
+    70% {
+
+        transform:
+            perspective(2200px)
+            rotateY(3deg)
+            translateX(2px)
+            translateZ(2px);
+
+        box-shadow:
+            inset -28px 0 35px
+            rgba(70,35,45,.14);
+    }
+
+    100% {
+
+        transform:
+            perspective(2200px)
+            rotateY(0deg)
+            translateX(0)
+            translateZ(0);
+
+        box-shadow:
+            inset -20px 0 30px
+            rgba(90,50,50,.07);
+    }
+}
+
+
+/* =====================================================
+   LEFT PAGE SAAT RIGHT PAGE DIBALIK
+   ===================================================== */
+
+@keyframes bendLeftPage {
+
+    /*
+       awal
+    */
+
+    0% {
+
+        transform:
+            perspective(2200px)
+            rotateY(0deg)
+            translateX(0)
+            translateZ(0);
+
+        box-shadow:
+            inset -20px 0 30px
+            rgba(90,50,50,.07);
+    }
+
+
+    /*
+       halaman mulai tertekan
+    */
+
+    15% {
+
+        transform:
+            perspective(2200px)
+            rotateY(-4deg)
+            translateX(-2px)
+            translateZ(3px);
+
+        box-shadow:
+            inset -35px 0 45px
+            rgba(70,35,45,.20),
+
+            -7px 0 18px
+            rgba(70,35,45,.10);
+    }
+
+
+    /*
+       bagian tengah flip
+       kiri sedikit melengkung
+    */
+
+    35% {
+
+        transform:
+            perspective(2200px)
+            rotateY(6deg)
+            translateX(3px)
+            translateZ(6px)
+            scaleX(.995);
+
+        box-shadow:
+            inset -45px 0 55px
+            rgba(70,35,45,.28),
+
+            -12px 0 25px
+            rgba(70,35,45,.13);
+    }
+
+
+    /*
+       kembali mengikuti punggung buku
+    */
+
+    55% {
+
+        transform:
+            perspective(2200px)
+            rotateY(-5deg)
+            translateX(-2px)
+            translateZ(3px);
+
+        box-shadow:
+            inset -38px 0 45px
+            rgba(70,35,45,.20);
+    }
+
+
+    /*
+       hampir selesai
+    */
+
+    75% {
+
+        transform:
+            perspective(2200px)
+            rotateY(2deg)
+            translateX(1px)
+            translateZ(1px);
+
+        box-shadow:
+            inset -28px 0 35px
+            rgba(70,35,45,.12);
+    }
+
+
+    /*
+       kembali rata
+    */
+
+    100% {
+
+        transform:
+            perspective(2200px)
+            rotateY(0deg)
+            translateX(0)
+            translateZ(0);
+
+        box-shadow:
+            inset -20px 0 30px
+            rgba(90,50,50,.07);
+    }
+}
+
+
+/* =====================================================
+   LIPATAN / BAYANGAN DI PUNGGUNG KIRI
+   ===================================================== */
+
+.left-page::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 55px;
+    height: 100%;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(70,35,45,.04) 35%,
+            rgba(70,35,45,.12) 70%,
+            rgba(70,35,45,.20) 100%
+        );
+
+    opacity: .35;
+
+    transition:
+        opacity .3s ease;
+}
+
+
+/* =====================================================
+   SHADOW LEBIH KUAT SAAT FLIP
+   ===================================================== */
+
+.book.page-flipping .left-page::before {
+
+    opacity: .9;
+}
+
+
+/* =====================================================
+   HILANGKAN EFEK KAKU DARI CENTER LINE
+   ===================================================== */
+
+.book.page-flipping .book-pages::after {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(70,35,45,.20),
+            rgba(255,255,255,.9),
+            rgba(70,35,45,.20)
+        );
+
+    box-shadow:
+        0 0 30px
+        rgba(60,30,40,.35);
+
+    width: 22px;
+}
